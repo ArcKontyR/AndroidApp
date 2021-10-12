@@ -7,9 +7,11 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import com.example.firstapp.R
+import com.example.firstapp.retrofitConnections.quotes
 
-class StateRecycler(val context: Context, val list: ArrayList<State>):RecyclerView.Adapter<StateRecycler.MyVH>() {
+class StateRecycler(val context: Context, val quotes: quotes):RecyclerView.Adapter<StateRecycler.MyVH>() {
     class MyVH(ListOfView: View): RecyclerView.ViewHolder(ListOfView){
         val img: ImageView = itemView.findViewById(R.id.state_img)
         val title: TextView = itemView.findViewById(R.id.state_title)
@@ -22,12 +24,12 @@ class StateRecycler(val context: Context, val list: ArrayList<State>):RecyclerVi
     }
 
     override fun onBindViewHolder(holder: StateRecycler.MyVH, position: Int) {
-        holder.img.setImageResource(list[position].state_img)
-        holder.title.setText(list[position].state_title)
-        holder.state_text.setText(list[position].state_text)
+        Glide.with(context).load(quotes.data[position].image).into(holder.img)
+        holder.title.setText(quotes.data[position].title)
+        holder.state_text.setText(quotes.data[position].description)
     }
 
     override fun getItemCount(): Int {
-        return list.size
+        return quotes.data.size
     }
 }
