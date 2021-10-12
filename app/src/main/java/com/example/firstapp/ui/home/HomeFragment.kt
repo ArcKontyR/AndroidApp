@@ -32,7 +32,6 @@ class HomeFragment : Fragment() {
         val root = inflater.inflate(R.layout.fragment_home, container, false)
 
         val feel_recycler: RecyclerView = root.findViewById(R.id.feel_rec)
-        //feel_recycler.adapter = FeelRecycler(requireContext(), Feel.MyFeel().list)
 
         val feelings = MyRetrofit().getRetrofit()
         val feel_api_ret = feelings.create(Interface::class.java)
@@ -50,7 +49,6 @@ class HomeFragment : Fragment() {
 
 
         val state_recycler: RecyclerView = root.findViewById(R.id.state_rec)
-        //state_recycler.adapter = StateRecycler(requireContext(), State.MyState().list)
 
         val quotes = MyRetrofit().getRetrofit()
         val quotes_api_ret = quotes.create(Interface::class.java)
